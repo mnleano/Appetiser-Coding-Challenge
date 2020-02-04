@@ -56,9 +56,12 @@ class HomeFragment : Fragment() {
 
                 override fun onNext(t: SearchResponse) {
                     results.addAll(t.results.filter { r ->
-                        r.trackName != ""
+                        r.trackId != null &&
+                        r.trackName != "" &&
+                                (r.shortDescription != null || r.longDescription != null)
                     }.map { r ->
                         ResultModel(
+                            r.trackId ?: 0,
                             r.artworkUrl100,
                             r.kind,
                             r.trackName,
@@ -66,7 +69,9 @@ class HomeFragment : Fragment() {
                             r.currency,
                             r.trackPrice,
                             r.primaryGenreName,
-                            r.releaseDate
+                            r.releaseDate,
+                            r.longDescription ?: r.longDescription ?: "",
+                            r.genres
                         )
                     })
                     adapter.notifyDataSetChanged()

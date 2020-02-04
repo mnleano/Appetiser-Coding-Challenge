@@ -44,8 +44,6 @@ data class Result(
     val country: String,
     @SerializedName("currency")
     val currency: String,
-    @SerializedName("description")
-    val description: String,
     @SerializedName("discCount")
     val discCount: Int,
     @SerializedName("discNumber")
@@ -63,7 +61,7 @@ data class Result(
     @SerializedName("kind")
     val kind: String,
     @SerializedName("longDescription")
-    val longDescription: String,
+    val longDescription: String?,
     @SerializedName("previewUrl")
     val previewUrl: String,
     @SerializedName("primaryGenreName")
@@ -71,7 +69,7 @@ data class Result(
     @SerializedName("releaseDate")
     val releaseDate: String,
     @SerializedName("shortDescription")
-    val shortDescription: String,
+    val shortDescription: String?,
     @SerializedName("trackCensoredName")
     val trackCensoredName: String,
     @SerializedName("trackCount")
@@ -83,7 +81,7 @@ data class Result(
     @SerializedName("trackHdRentalPrice")
     val trackHdRentalPrice: Double,
     @SerializedName("trackId")
-    val trackId: Int,
+    val trackId: Int?,
     @SerializedName("trackName")
     val trackName: String,
     @SerializedName("trackNumber")
