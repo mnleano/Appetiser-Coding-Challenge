@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
     </style>
 
     <style name="Toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -25,6 +26,36 @@
 
     <style name="itemTextAppearanceInactive" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="TextView.Title" parent="TextView">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="TextView.Artist"></style>
+
+    <style name="TextView.Price" parent="TextView">
+        <item name="android:textColor">@color/textColorOrange</item>
+        <item name="android:textSize">@dimen/text_size_xl</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.TimeStamp" parent="TextView">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/default_stroke_weight</item>
+        <item name="android:background">@color/strokeColor</item>
     </style>
 
 </resources>

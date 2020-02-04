@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.neds.appetisercodingchallenge.model.ResultViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/row_icon_size"
+            android:layout_height="@dimen/row_icon_size"
+            android:layout_marginStart="@dimen/row_horizontal_margin"
+            app:icon="@{data.icon}"
+            app:kind="@{data.kind}"
+            app:layout_constraintBottom_toBottomOf="@id/tvTimeStamp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle"
+            tools:src="@drawable/img_placeholder" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextView.Title"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/row_vertical_mergin"
+            android:layout_marginEnd="@dimen/row_horizontal_margin"
+            android:text="@{data.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tvArtist"
+            style="@style/TextView"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/TextView.Price"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <TextView
+            android:id="@+id/tvTimeStamp"
+            style="@style/TextView.TimeStamp"
+            android:layout_marginBottom="@dimen/row_vertical_mergin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+        <View
+            style="@style/Divider"
+            android:layout_marginStart="@dimen/row_horizontal_margin"
+            android:layout_marginEnd="@dimen/row_horizontal_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
