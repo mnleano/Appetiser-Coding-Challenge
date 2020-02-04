@@ -37,14 +37,14 @@
 
     <style name="TextView.Title" parent="TextView">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textSize">@dimen/text_size_xl</item>
     </style>
 
     <style name="TextView.Artist"></style>
 
     <style name="TextView.Price" parent="TextView">
         <item name="android:textColor">@color/textColorOrange</item>
-        <item name="android:textSize">@dimen/text_size_xl</item>
+        <item name="android:textSize">@dimen/text_size_price</item>
         <item name="android:textStyle">bold</item>
     </style>
 

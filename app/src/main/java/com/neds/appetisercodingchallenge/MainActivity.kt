@@ -38,25 +38,6 @@ class MainActivity : BaseActivity() {
         }
 
         binding.navigation.selectedItemId = R.id.navigation_home
-        ITunesApi.search()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribeWith(object : DisposableObserver<SearchResponse>() {
-                override fun onComplete() {
-                    Timber.d("onComplete")
-                }
-
-                override fun onNext(t: SearchResponse) {
-                    Timber.d("onNext=$t")
-                }
-
-                override fun onError(e: Throwable) {
-                    Timber.e(e, "onError=")
-                }
-
-            })
-
-
     }
 
     private fun setFragment(fragment: Fragment): Boolean {

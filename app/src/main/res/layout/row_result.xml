@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.neds.appetisercodingchallenge.model.ResultViewModel" />
+            type="com.neds.appetisercodingchallenge.model.ResultModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,6 +19,7 @@
             android:layout_width="@dimen/row_icon_size"
             android:layout_height="@dimen/row_icon_size"
             android:layout_marginStart="@dimen/row_horizontal_margin"
+            android:background="@android:color/white"
             app:icon="@{data.icon}"
             app:kind="@{data.kind}"
             app:layout_constraintBottom_toBottomOf="@id/tvTimeStamp"
@@ -40,17 +41,28 @@
             tools:text="@tools:sample/full_names" />
 
         <TextView
-            android:id="@+id/tvArtist"
+            android:id="@+id/tvGenre"
             style="@style/TextView"
+            android:text="@{data.genre}"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="@tools:sample/full_names" />
 
         <TextView
+            android:id="@+id/tvArtist"
+            style="@style/TextView"
+            android:text="@{data.artist}"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvGenre"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
             android:id="@+id/tvPrice"
             style="@style/TextView.Price"
+            app:currency="@{data.currency}"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+            app:price="@{data.price}"
             tools:text="@tools:sample/us_zipcodes" />
 
         <TextView
@@ -60,6 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+            app:timestamp="@{data.timestamp}"
             tools:text="@tools:sample/date/ddmmyy" />
 
         <View
