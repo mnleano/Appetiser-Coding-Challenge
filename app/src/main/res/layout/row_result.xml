@@ -73,7 +73,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvPrice"
-            app:timestamp="@{data.timestamp}"
+            app:releaseDate ="@{data.releaseDate}"
             tools:text="@tools:sample/date/ddmmyy" />
 
         <View

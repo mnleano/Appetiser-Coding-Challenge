@@ -1,6 +1,12 @@
-package com.neds.appetisercodingchallenge.model
+package com.neds.appetisercodingchallenge.dataLayer
 
-class ResultModel(
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
+
+@Entity
+class Recent(
+    @Id
+    var id: Long = 0,
     val trackId: Int,
     val icon: String?,
     val kind: String?,
@@ -10,6 +16,5 @@ class ResultModel(
     val price: Double?,
     val genre: String?,
     val releaseDate: String?,
-    val description: String?,
-    val genres: List<String>?
+    val description: String?
 )

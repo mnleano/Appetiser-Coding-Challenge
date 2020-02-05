@@ -25,13 +25,16 @@ object CommonBindingUtils {
         view.text = text
     }
 
-    @BindingAdapter("timestamp")
+    @BindingAdapter("releaseDate")
     @JvmStatic
-    fun setTimestamp(view: TextView, timestamp: String) {
-        var sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val date = sdf.parse(timestamp)
-        sdf = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
-        view.text = view.context.getString(R.string.release_date, sdf.format(date))
-
+    fun setTimestamp(view: TextView, releaseDate: String) {
+        try {
+            var sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            val date = sdf.parse(releaseDate)
+            sdf = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+            view.text = view.context.getString(R.string.release_date, sdf.format(date))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

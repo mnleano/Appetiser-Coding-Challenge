@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'io.objectbox'
 
 android {
     compileSdkVersion 29
@@ -60,6 +61,10 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
     api 'com.squareup.okhttp3:okhttp:3.14.1'
     api 'com.squareup.okhttp3:logging-interceptor:3.14.1'
+
+    // Database
+    // https://docs.objectbox.io/kotlin-support
+    api "io.objectbox:objectbox-kotlin:$objectboxVersion"
 
     // Logging
     api 'com.jakewharton.timber:timber:4.7.1'
