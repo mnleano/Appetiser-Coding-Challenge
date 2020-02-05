@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'io.objectbox'
+
 
 android {
     compileSdkVersion 29
@@ -64,7 +64,9 @@ dependencies {
 
     // Database
     // https://docs.objectbox.io/kotlin-support
+    debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectboxVersion"
     api "io.objectbox:objectbox-kotlin:$objectboxVersion"
+
 
     // Logging
     api 'com.jakewharton.timber:timber:4.7.1'
@@ -77,5 +79,6 @@ dependencies {
 
     // Event Bus
     api 'org.greenrobot:eventbus:3.1.1'
-
 }
+
+apply plugin: 'io.objectbox'

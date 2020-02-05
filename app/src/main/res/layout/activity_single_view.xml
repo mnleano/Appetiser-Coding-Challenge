@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.neds.appetisercodingchallenge.model.ResultModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.SingleViewActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/row_icon_size"
+            android:layout_height="@dimen/row_icon_size"
+            android:layout_marginStart="@dimen/row_horizontal_margin"
+            android:background="@android:color/white"
+            app:icon="@{data.icon}"
+            app:kind="@{data.kind}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle"
+            tools:src="@drawable/img_placeholder" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextView.Title"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/row_vertical_mergin"
+            android:layout_marginEnd="@dimen/row_horizontal_margin"
+            android:text="@{data.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tvGenre"
+            style="@style/TextView"
+            android:text="@{data.genre}"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tvArtist"
+            style="@style/TextView"
+            android:text="@{data.artist}"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvGenre"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tvTimeStamp"
+            style="@style/TextView.TimeStamp"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+            app:releaseDate="@{data.releaseDate}"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+        <View
+            android:id="@+id/div"
+            style="@style/Divider"
+            android:layout_marginStart="@dimen/row_horizontal_margin"
+            android:layout_marginTop="@dimen/row_vertical_mergin"
+            android:layout_marginEnd="@dimen/row_horizontal_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon" />
+
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/TextView.Price"
+            app:currency="@{data.currency}"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAdd"
+            app:layout_constraintStart_toStartOf="@id/div"
+            app:layout_constraintTop_toTopOf="@+id/btnAdd"
+            app:price="@{data.price}"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <ImageView
+            android:id="@+id/ivWishList"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/default_margin"
+            android:background="?selectableItemBackground"
+            android:src="@{data.wishList ? @drawable/ic_wish_remove : @drawable/ic_wish_add, default=@drawable/ic_wish_add}"
+            app:layout_constraintBottom_toBottomOf="@id/btnAdd"
+            app:layout_constraintEnd_toStartOf="@id/btnAdd"
+            app:layout_constraintTop_toTopOf="@id/btnAdd"
+            tools:src="@drawable/ic_wish_add" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/row_vertical_mergin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:backgroundTint="@drawable/background_button_primary"
+            android:text="@string/add_to_cart"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/div" />
+
+        <View
+            android:id="@+id/div2"
+            style="@style/Divider"
+            android:layout_marginStart="@dimen/row_horizontal_margin"
+            android:layout_marginTop="@dimen/row_vertical_mergin"
+            android:layout_marginEnd="@dimen/row_horizontal_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAdd" />
+
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@{data.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/div2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

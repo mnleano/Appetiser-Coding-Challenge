@@ -1,0 +1,46 @@
+package com.neds.appetisercodingchallenge.ui.main
+
+import android.content.Context
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import com.neds.appetisercodingchallenge.R
+import com.neds.appetisercodingchallenge.data.ObjectBox
+import com.neds.appetisercodingchallenge.data.ObjectBoxManager
+import com.neds.appetisercodingchallenge.databinding.ActivitySingleViewBinding
+import com.neds.appetisercodingchallenge.model.ResultModel
+import com.neds.appetisercodingchallenge.ui.BaseActivity
+
+class SingleViewActivity : BaseActivity() {
+
+    private lateinit var binding: ActivitySingleViewBinding
+    private var result: ResultModel? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_single_view)
+        initToolbar(binding.toolbar.toolbar)
+        intent.extras?.getSerializable(EXTRA_DATA)?.let {
+            result = it as ResultModel
+            result?.let { r ->
+                r.wishList.set(ObjectBoxManager.isWishlisted(r.trackId))
+                binding.data = r
+            }
+        }
+
+        binding.ivWishList.setOnClickListener {
+            result?.let { r ->
+                ObjectBoxManager.putWishList(r)
+                r.wishList.set(ObjectBoxManager.isWishlisted(r.trackId))
+            }
+        }
+    }
+
+    companion object {
+        private const val EXTRA_DATA = "extraData"
+
+        fun makeIntent(context: Context, result: ResultModel): Intent {
+            return Intent(context, SingleViewActivity::class.java).putExtra(EXTRA_DATA, result)
+        }
+    }
+}

@@ -1,13 +1,13 @@
-package com.neds.appetisercodingchallenge
+package com.neds.appetisercodingchallenge.data
 
 import android.content.Context
-import android.util.Log
-import com.neds.appetisercodingchallenge.dataLayer.MyObjectBox
+import com.neds.appetisercodingchallenge.BuildConfig
 import io.objectbox.BoxStore
+import io.objectbox.android.AndroidObjectBrowser
+import timber.log.Timber
 
 
 object ObjectBox {
-    val tag = "ObjectBox"
     lateinit var boxStore: BoxStore
         private set
 
@@ -17,11 +17,14 @@ object ObjectBox {
             // This is the minimal setup required on Android
             boxStore = MyObjectBox.builder().name(name).androidContext(context).maxReaders(480)
                 .queryAttempts(4).build()
+            if (BuildConfig.DEBUG) {
+                val started = AndroidObjectBrowser(boxStore).start(context)
+                Timber.i("ObjectBrowser started: $started")
+            }
         } catch (e: Exception) {
             // If you made change of the object box data model, read this document
             // See https://docs.objectbox.io/advanced/data-model-updates
-            Log.w(
-                tag,
+            Timber.e(
                 "Can't build object box, If you made change of the object box data model, read this document https://docs.objectbox.io/advanced/data-model-updates",
                 e
             )
@@ -42,7 +45,7 @@ object ObjectBox {
             boxStore.deleteAllFiles()
             build(context, name)
         } catch (e: Exception) {
-            Log.e(tag, "Can't delete all", e)
+            Timber.e("Can't delete all", e)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.neds.appetisercodingchallenge.fragments
+package com.neds.appetisercodingchallenge.ui.main
 
 
 import android.os.Bundle

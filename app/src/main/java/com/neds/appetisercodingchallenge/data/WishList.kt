@@ -1,13 +1,15 @@
-package com.neds.appetisercodingchallenge.dataLayer
+package com.neds.appetisercodingchallenge.data
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.annotation.Uid
+import io.objectbox.relation.ToMany
 
 @Entity
-class Recent(
+class WishList(
     @Id
     var id: Long = 0,
-    val trackId: Int,
+    val trackId: Long,
     val icon: String?,
     val kind: String?,
     val title: String?,

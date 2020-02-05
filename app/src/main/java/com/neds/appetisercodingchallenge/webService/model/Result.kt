@@ -50,10 +50,6 @@ data class Result(
     val discNumber: Int,
     @SerializedName("feedUrl")
     val feedUrl: String,
-    @SerializedName("genreIds")
-    val genreIds: List<String>,
-    @SerializedName("genres")
-    val genres: List<String>?,
     @SerializedName("hasITunesExtras")
     val hasITunesExtras: Boolean,
     @SerializedName("isStreamable")

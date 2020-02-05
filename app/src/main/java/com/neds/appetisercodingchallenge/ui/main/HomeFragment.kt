@@ -1,4 +1,4 @@
-package com.neds.appetisercodingchallenge.fragments
+package com.neds.appetisercodingchallenge.ui.main
 
 
 import android.annotation.SuppressLint
@@ -11,10 +11,10 @@ import androidx.databinding.DataBindingUtil
 
 import com.neds.appetisercodingchallenge.R
 import com.neds.appetisercodingchallenge.adapter.ResultAdapter
+import com.neds.appetisercodingchallenge.data.ObjectBoxManager
 import com.neds.appetisercodingchallenge.databinding.FragmentHomeBinding
 import com.neds.appetisercodingchallenge.model.ResultModel
 import com.neds.appetisercodingchallenge.webService.ITunesApi
-import com.neds.appetisercodingchallenge.webService.model.Result
 import com.neds.appetisercodingchallenge.webService.model.SearchResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
@@ -45,8 +45,10 @@ class HomeFragment : Fragment() {
 
         adapter = ResultAdapter(results,
             object : ResultAdapter.Listener {
-                override fun onClick(result: ResultModel) {
+                override fun onClick(r: ResultModel) {
                     Timber.d("initData: onClick")
+                    ObjectBoxManager.putRecent(r)
+                    startActivity(SingleViewActivity.makeIntent(activity!!, r))
                 }
             })
 
@@ -61,34 +63,13 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onNext(t: SearchResponse) {
-//                    t.results.filter { r ->
-//                        r.trackId != null &&
-//                                r.trackName != "" &&
-//                                (r.shortDescription != null || r.longDescription != null) &&
-//                                r.genres != null
-//                    }.forEach { result ->
-//                        val message = "${result.trackId}, " +
-//                                "${result.artworkUrl100}, " +
-//                                "${result.kind}, " +
-//                                "${result.trackName}, " +
-//                                "${result.artistName}, " +
-//                                "${result.currency}, " +
-//                                "${result.trackPrice}, " +
-//                                "${result.primaryGenreName}, " +
-//                                "${result.releaseDate}, " +
-//                                "${result.longDescription}, " +
-//                                "${result.shortDescription}, " +
-//                                "${result.genres}, "
-//                        Timber.d(message)
-//                    }
-
                     results.addAll(t.results.filter { r ->
                         r.trackId != null &&
                                 r.trackName != "" &&
                                 (r.shortDescription != null || r.longDescription != null)
                     }.map { r ->
                         ResultModel(
-                            r.trackId ?: 0,
+                            r.trackId?.toLong() ?: 0,
                             r.artworkUrl100,
                             r.kind,
                             r.trackName,
@@ -97,8 +78,7 @@ class HomeFragment : Fragment() {
                             r.trackPrice,
                             r.primaryGenreName,
                             r.releaseDate,
-                            r.longDescription ?: r.shortDescription ?: "",
-                            r.genres
+                            r.longDescription ?: r.shortDescription ?: ""
                         )
                     })
                     adapter.notifyDataSetChanged()

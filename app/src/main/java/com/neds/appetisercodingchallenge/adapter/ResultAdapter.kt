@@ -43,6 +43,6 @@ class ResultAdapter(private val results: MutableList<ResultModel>, private val l
     inner class ViewHolder(val binding: RowResultBinding) : RecyclerView.ViewHolder(binding.root)
 
     interface Listener{
-        fun onClick(result: ResultModel)
+        fun onClick(r: ResultModel)
     }
 }

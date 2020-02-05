@@ -1,9 +1,9 @@
 package com.neds.appetisercodingchallenge
 
-import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.neds.appetisercodingchallenge.data.ObjectBox
 import io.objectbox.BoxStore
 import timber.log.Timber
 

@@ -1,4 +1,4 @@
-package com.neds.appetisercodingchallenge
+package com.neds.appetisercodingchallenge.ui
 
 import android.view.MenuItem
 import android.view.View

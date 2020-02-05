@@ -1,14 +1,12 @@
-package com.neds.appetisercodingchallenge
+package com.neds.appetisercodingchallenge.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.neds.appetisercodingchallenge.R
 import com.neds.appetisercodingchallenge.databinding.ActivityMainBinding
-import com.neds.appetisercodingchallenge.fragments.CartFragment
-import com.neds.appetisercodingchallenge.fragments.HistoryFragment
-import com.neds.appetisercodingchallenge.fragments.HomeFragment
-import com.neds.appetisercodingchallenge.fragments.WishListFragment
+import com.neds.appetisercodingchallenge.ui.BaseActivity
 import timber.log.Timber
 
 class MainActivity : BaseActivity() {
@@ -19,7 +17,9 @@ class MainActivity : BaseActivity() {
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main
+        )
         initToolbar(binding.toolbar.toolbar, false)
 
         binding.navigation.setOnNavigationItemSelectedListener { item ->
