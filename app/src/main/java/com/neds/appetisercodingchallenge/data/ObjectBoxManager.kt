@@ -13,23 +13,31 @@ object ObjectBoxManager {
             return ObjectBox.boxStore.boxFor()
         }
 
+    private val cartBox: Box<Cart>
+        get() {
+            return ObjectBox.boxStore.boxFor()
+        }
+
     private val wishListBox: Box<WishList>
         get() {
             return ObjectBox.boxStore.boxFor()
         }
 
-    fun putRecent(r: ResultModel) {
-        recentBox.query { equal(Recent_.trackId, r.trackId) }.findFirst()
-            ?.let { recentBox.remove(it.id) }
-
-        val recent = Recent(
-            0, r.trackId, r.icon,
-            r.kind, r.title, r.artist,
-            r.currency, r.price, r.genre,
-            r.releaseDate, r.description
+    fun addToCart(r: ResultModel) {
+        cartBox.put(
+            Cart(
+                0, r.trackId, r.icon,
+                r.kind, r.title, r.artist,
+                r.currency, r.price, r.genre,
+                r.releaseDate, r.description
+            )
         )
+    }
 
-        recentBox.put(recent)
+    fun removeToCart(id: Long) {
+        cartBox.query { equal(Cart_.trackId, id) }.findFirst()?.let {
+            cartBox.remove(it.id)
+        }
     }
 
     fun putWishList(r: ResultModel) {
@@ -48,9 +56,26 @@ object ObjectBoxManager {
         }
     }
 
-    fun getRecent(): MutableList<Recent> {
-        Timber.d("getRecent: total=${recentBox.count()}")
-        return recentBox.all
+    fun getWishList(): MutableList<WishList>? {
+        return wishListBox.all
+    }
+
+    fun removeWishList(id: Long) {
+        wishListBox.remove(id)
+    }
+
+    fun putRecent(r: ResultModel) {
+        recentBox.query { equal(Recent_.trackId, r.trackId) }.findFirst()
+            ?.let { recentBox.remove(it.id) }
+
+        val recent = Recent(
+            0, r.trackId, r.icon,
+            r.kind, r.title, r.artist,
+            r.currency, r.price, r.genre,
+            r.releaseDate, r.description
+        )
+
+        recentBox.put(recent)
     }
 
     fun isWishlisted(id: Long): Boolean {

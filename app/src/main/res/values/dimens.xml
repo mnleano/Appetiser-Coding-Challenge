@@ -15,7 +15,7 @@
     <dimen name="text_size_large">16sp</dimen>
     <dimen name="text_size_xl">18sp</dimen>
 
-    <dimen name="text_size_price">24sp</dimen>
+    <dimen name="text_size_price">20sp</dimen>
 
     <dimen name="row_vertical_mergin">12dp</dimen>
     <dimen name="row_horizontal_margin">16dp</dimen>

@@ -68,9 +68,75 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "4:1340776033172433803",
+      "lastPropertyId": "11:3268510208506804770",
+      "name": "WishList",
+      "properties": [
+        {
+          "id": "1:1439510779513639296",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3263007095120034782",
+          "name": "trackId",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "3:8228205742440803602",
+          "name": "icon",
+          "type": 9
+        },
+        {
+          "id": "4:2288013250019808637",
+          "name": "kind",
+          "type": 9
+        },
+        {
+          "id": "5:2423941028889594727",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "6:298641609997674923",
+          "name": "artist",
+          "type": 9
+        },
+        {
+          "id": "7:1447853717177297596",
+          "name": "currency",
+          "type": 9
+        },
+        {
+          "id": "8:5326007394366783724",
+          "name": "price",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "9:1863467838833247247",
+          "name": "genre",
+          "type": 9
+        },
+        {
+          "id": "10:3299970072029530239",
+          "name": "releaseDate",
+          "type": 9
+        },
+        {
+          "id": "11:3268510208506804770",
+          "name": "description",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:5653202245903044406",
+  "lastEntityId": "4:1340776033172433803",
   "lastIndexId": "0:0",
   "lastRelationId": "1:6669479728556868081",
   "lastSequenceId": "0:0",
