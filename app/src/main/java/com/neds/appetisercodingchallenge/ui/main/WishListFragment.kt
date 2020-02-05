@@ -14,6 +14,7 @@ import com.neds.appetisercodingchallenge.adapter.WishListAdapter
 import com.neds.appetisercodingchallenge.data.ObjectBoxManager
 import com.neds.appetisercodingchallenge.data.WishList
 import com.neds.appetisercodingchallenge.databinding.FragmentListBinding
+import com.neds.appetisercodingchallenge.model.ResultModel
 
 /**
  * A simple [Fragment] subclass.
@@ -36,7 +37,7 @@ class WishListFragment : Fragment() {
     private fun initData() {
         adapter = WishListAdapter(wishes, object : WishListAdapter.Listener {
             override fun onClick(w: WishList) {
-
+                startActivity(SingleViewActivity.makeIntent(activity!!, ResultModel.map(w)))
             }
 
             override fun onDeleteClick(w: WishList) {
@@ -46,9 +47,8 @@ class WishListFragment : Fragment() {
             }
 
             override fun onAddCartClick(w: WishList) {
-
+                ObjectBoxManager.addToCart(ResultModel.map(w))
             }
-
         })
 
         ObjectBoxManager.getWishList()?.let {

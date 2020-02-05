@@ -4,7 +4,6 @@ import com.neds.appetisercodingchallenge.model.ResultModel
 import io.objectbox.Box
 import io.objectbox.kotlin.boxFor
 import io.objectbox.kotlin.query
-import timber.log.Timber
 
 object ObjectBoxManager {
 
@@ -41,7 +40,7 @@ object ObjectBoxManager {
     }
 
     fun putWishList(r: ResultModel) {
-        if (isWishlisted(r.trackId))
+        if (isWishListed(r.trackId))
             wishListBox.query { equal(WishList_.trackId, r.trackId) }.findFirst()
                 ?.let { wishListBox.remove(it.id) }
         else {
@@ -78,7 +77,7 @@ object ObjectBoxManager {
         recentBox.put(recent)
     }
 
-    fun isWishlisted(id: Long): Boolean {
+    fun isWishListed(id: Long): Boolean {
         return wishListBox.query { equal(WishList_.trackId, id) }.findFirst()?.let { true } ?: false
     }
 

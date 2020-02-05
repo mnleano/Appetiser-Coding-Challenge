@@ -2,11 +2,9 @@ package com.neds.appetisercodingchallenge.ui.main
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.neds.appetisercodingchallenge.R
-import com.neds.appetisercodingchallenge.data.ObjectBox
 import com.neds.appetisercodingchallenge.data.ObjectBoxManager
 import com.neds.appetisercodingchallenge.databinding.ActivitySingleViewBinding
 import com.neds.appetisercodingchallenge.model.ResultModel
@@ -23,7 +21,7 @@ class SingleViewActivity : BaseActivity() {
         intent.extras?.getSerializable(EXTRA_DATA)?.let {
             result = it as ResultModel
             result?.let { r ->
-                r.wishList.set(ObjectBoxManager.isWishlisted(r.trackId))
+                r.wishList.set(ObjectBoxManager.isWishListed(r.trackId))
                 binding.data = r
             }
         }
@@ -31,7 +29,7 @@ class SingleViewActivity : BaseActivity() {
         binding.ivWishList.setOnClickListener {
             result?.let { r ->
                 ObjectBoxManager.putWishList(r)
-                r.wishList.set(ObjectBoxManager.isWishlisted(r.trackId))
+                r.wishList.set(ObjectBoxManager.isWishListed(r.trackId))
             }
         }
     }
