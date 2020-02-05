@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.neds.appetisercodingchallenge.R
+import com.neds.appetisercodingchallenge.data.ObjectBoxManager
 import com.neds.appetisercodingchallenge.data.WishList
 import com.neds.appetisercodingchallenge.databinding.RowWishListBinding
+import com.neds.appetisercodingchallenge.model.ResultModel
+import com.neds.appetisercodingchallenge.ui.SingleViewActivity
 
-class WishListAdapter(private val wishes: MutableList<WishList>, private val listener: Listener) :
+class WishListAdapter(private val wishes: MutableList<WishList>) :
     RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
 
     private var inflater: LayoutInflater? = null
@@ -34,24 +37,21 @@ class WishListAdapter(private val wishes: MutableList<WishList>, private val lis
         val wish = wishes[position]
         holder.binding.data = wish
         holder.binding.root.setOnClickListener {
-            listener.onClick(wish)
+            val context = holder.binding.root.context
+            context.startActivity(SingleViewActivity.makeIntent(context, ResultModel.map(wish)))
         }
 
         holder.binding.ivDelete.setOnClickListener {
-            listener.onDeleteClick(wish)
+            ObjectBoxManager.removeWishList(wish.id)
+            wishes.removeAt(position)
+            notifyItemRemoved(position)
         }
 
         holder.binding.btnAdd.setOnClickListener {
-            listener.onAddCartClick(wish)
+            ObjectBoxManager.addToCart(ResultModel.map(wish))
         }
     }
 
 
     inner class ViewHolder(val binding: RowWishListBinding) : RecyclerView.ViewHolder(binding.root)
-
-    interface Listener {
-        fun onClick(w: WishList)
-        fun onDeleteClick(w: WishList)
-        fun onAddCartClick(w: WishList)
-    }
 }

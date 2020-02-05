@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.neds.appetisercodingchallenge.model.ResultModel" />
+            type="com.neds.appetisercodingchallenge.data.Cart" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,7 +23,6 @@
             android:background="@android:color/white"
             app:icon="@{data.icon}"
             app:kind="@{data.kind}"
-            app:layout_constraintBottom_toBottomOf="@id/tvTimeStamp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle"
             tools:src="@drawable/img_placeholder" />
@@ -66,22 +65,26 @@
             app:price="@{data.price}"
             tools:text="@tools:sample/us_zipcodes" />
 
-        <TextView
-            android:id="@+id/tvTimeStamp"
-            style="@style/TextView.TimeStamp"
-            android:layout_marginBottom="@dimen/row_vertical_mergin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
-            app:releaseDate ="@{data.releaseDate}"
-            tools:text="@tools:sample/date/ddmmyy" />
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@drawable/background_button_primary"
+            android:padding="4dp"
+            android:src="@drawable/ic_delete"
+            android:text="@string/add_to_cart"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <View
             style="@style/Divider"
             android:layout_marginStart="@dimen/row_horizontal_margin"
+            android:layout_marginTop="@dimen/row_vertical_mergin"
             android:layout_marginEnd="@dimen/row_horizontal_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

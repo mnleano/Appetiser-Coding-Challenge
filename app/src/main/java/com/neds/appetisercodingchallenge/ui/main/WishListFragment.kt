@@ -35,27 +35,20 @@ class WishListFragment : Fragment() {
     }
 
     private fun initData() {
-        adapter = WishListAdapter(wishes, object : WishListAdapter.Listener {
-            override fun onClick(w: WishList) {
-                startActivity(SingleViewActivity.makeIntent(activity!!, ResultModel.map(w)))
-            }
+        adapter = WishListAdapter(wishes)
+        binding.recyclerView.adapter = adapter
+    }
 
-            override fun onDeleteClick(w: WishList) {
-                ObjectBoxManager.removeWishList(w.id)
-                wishes.remove(w)
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onAddCartClick(w: WishList) {
-                ObjectBoxManager.addToCart(ResultModel.map(w))
-            }
-        })
+    override fun onResume() {
+        super.onResume()
 
         ObjectBoxManager.getWishList()?.let {
+            wishes.clear()
             wishes.addAll(it)
             adapter.notifyDataSetChanged()
+
+            binding.tvEmpty.visibility = if (it.size > 0) View.GONE else View.VISIBLE
         }
 
-        binding.recyclerView.adapter = adapter
     }
 }

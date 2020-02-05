@@ -1,4 +1,4 @@
-package com.neds.appetisercodingchallenge.ui.main
+package com.neds.appetisercodingchallenge.ui
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,6 @@ import com.neds.appetisercodingchallenge.R
 import com.neds.appetisercodingchallenge.data.ObjectBoxManager
 import com.neds.appetisercodingchallenge.databinding.ActivitySingleViewBinding
 import com.neds.appetisercodingchallenge.model.ResultModel
-import com.neds.appetisercodingchallenge.ui.BaseActivity
 
 class SingleViewActivity : BaseActivity() {
 
@@ -38,7 +37,9 @@ class SingleViewActivity : BaseActivity() {
         private const val EXTRA_DATA = "extraData"
 
         fun makeIntent(context: Context, result: ResultModel): Intent {
-            return Intent(context, SingleViewActivity::class.java).putExtra(EXTRA_DATA, result)
+            ObjectBoxManager.putRecent(result)
+            return Intent(context, SingleViewActivity::class.java).putExtra(
+                EXTRA_DATA, result)
         }
     }
 }

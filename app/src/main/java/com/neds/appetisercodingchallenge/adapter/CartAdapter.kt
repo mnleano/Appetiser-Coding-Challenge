@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.neds.appetisercodingchallenge.R
-import com.neds.appetisercodingchallenge.databinding.RowResultBinding
+import com.neds.appetisercodingchallenge.data.Cart
+import com.neds.appetisercodingchallenge.data.ObjectBoxManager
+import com.neds.appetisercodingchallenge.databinding.RowCartBinding
 import com.neds.appetisercodingchallenge.model.ResultModel
 import com.neds.appetisercodingchallenge.ui.SingleViewActivity
-import timber.log.Timber
 
-class ResultAdapter(private val results: MutableList<ResultModel>) :
-    RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
+class CartAdapter(private val items: MutableList<Cart>) :
+    RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     private var inflater: LayoutInflater? = null
 
@@ -19,9 +20,9 @@ class ResultAdapter(private val results: MutableList<ResultModel>) :
         if (inflater == null)
             inflater = LayoutInflater.from(parent.context)
 
-        val binding = DataBindingUtil.inflate<RowResultBinding>(
+        val binding = DataBindingUtil.inflate<RowCartBinding>(
             inflater!!,
-            R.layout.row_result,
+            R.layout.row_cart,
             parent,
             false
         )
@@ -29,19 +30,24 @@ class ResultAdapter(private val results: MutableList<ResultModel>) :
     }
 
     override fun getItemCount(): Int {
-        return results.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val result = results[position]
-        holder.binding.data = result
+        val item = items[position]
+        holder.binding.data = item
         holder.binding.root.setOnClickListener {
-            Timber.d("onBindViewHolder: onClicked: result.title=${result.title}")
             val context = holder.binding.root.context
-            context.startActivity(SingleViewActivity.makeIntent(context, result))
+            context.startActivity(SingleViewActivity.makeIntent(context, ResultModel.map(item)))
+        }
 
+        holder.binding.ivDelete.setOnClickListener {
+            ObjectBoxManager.removeToCart(item.id)
+            items.removeAt(position)
+            notifyItemRemoved(position)
         }
     }
 
-    inner class ViewHolder(val binding: RowResultBinding) : RecyclerView.ViewHolder(binding.root)
+
+    inner class ViewHolder(val binding: RowCartBinding) : RecyclerView.ViewHolder(binding.root)
 }

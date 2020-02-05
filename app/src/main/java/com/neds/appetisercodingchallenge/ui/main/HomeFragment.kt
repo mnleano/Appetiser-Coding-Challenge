@@ -3,16 +3,13 @@ package com.neds.appetisercodingchallenge.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
-
+import androidx.fragment.app.Fragment
 import com.neds.appetisercodingchallenge.R
 import com.neds.appetisercodingchallenge.adapter.ResultAdapter
-import com.neds.appetisercodingchallenge.data.ObjectBoxManager
 import com.neds.appetisercodingchallenge.databinding.FragmentListBinding
 import com.neds.appetisercodingchallenge.model.ResultModel
 import com.neds.appetisercodingchallenge.webService.ITunesApi
@@ -43,16 +40,7 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("CheckResult")
     private fun initData() {
-
-        adapter = ResultAdapter(results,
-            object : ResultAdapter.Listener {
-                override fun onClick(r: ResultModel) {
-                    Timber.d("initData: onClick")
-                    ObjectBoxManager.putRecent(r)
-                    startActivity(SingleViewActivity.makeIntent(activity!!, r))
-                }
-            })
-
+        adapter = ResultAdapter(results)
         binding.recyclerView.adapter = adapter
 
         ITunesApi.search()

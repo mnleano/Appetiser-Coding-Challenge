@@ -22,6 +22,10 @@ object ObjectBoxManager {
             return ObjectBox.boxStore.boxFor()
         }
 
+    fun getCart(): MutableList<Cart>? {
+        return cartBox.all
+    }
+
     fun addToCart(r: ResultModel) {
         cartBox.put(
             Cart(
@@ -75,6 +79,10 @@ object ObjectBoxManager {
         )
 
         recentBox.put(recent)
+    }
+
+    fun getRecents(): MutableList<Recent>? {
+        return recentBox.all
     }
 
     fun isWishListed(id: Long): Boolean {
