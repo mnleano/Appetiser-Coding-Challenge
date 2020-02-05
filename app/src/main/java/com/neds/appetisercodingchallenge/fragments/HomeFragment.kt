@@ -43,7 +43,13 @@ class HomeFragment : Fragment() {
     @SuppressLint("CheckResult")
     private fun initData() {
 
-        adapter = ResultAdapter(results)
+        adapter = ResultAdapter(results,
+            object : ResultAdapter.Listener {
+                override fun onClick(result: ResultModel) {
+                    Timber.d("initData: onClick")
+                }
+            })
+
         binding.recyclerView.adapter = adapter
 
         ITunesApi.search()
@@ -55,9 +61,30 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onNext(t: SearchResponse) {
+//                    t.results.filter { r ->
+//                        r.trackId != null &&
+//                                r.trackName != "" &&
+//                                (r.shortDescription != null || r.longDescription != null) &&
+//                                r.genres != null
+//                    }.forEach { result ->
+//                        val message = "${result.trackId}, " +
+//                                "${result.artworkUrl100}, " +
+//                                "${result.kind}, " +
+//                                "${result.trackName}, " +
+//                                "${result.artistName}, " +
+//                                "${result.currency}, " +
+//                                "${result.trackPrice}, " +
+//                                "${result.primaryGenreName}, " +
+//                                "${result.releaseDate}, " +
+//                                "${result.longDescription}, " +
+//                                "${result.shortDescription}, " +
+//                                "${result.genres}, "
+//                        Timber.d(message)
+//                    }
+
                     results.addAll(t.results.filter { r ->
                         r.trackId != null &&
-                        r.trackName != "" &&
+                                r.trackName != "" &&
                                 (r.shortDescription != null || r.longDescription != null)
                     }.map { r ->
                         ResultModel(
@@ -70,7 +97,7 @@ class HomeFragment : Fragment() {
                             r.trackPrice,
                             r.primaryGenreName,
                             r.releaseDate,
-                            r.longDescription ?: r.longDescription ?: "",
+                            r.longDescription ?: r.shortDescription ?: "",
                             r.genres
                         )
                     })

@@ -20,12 +20,8 @@
         <item name="itemTextColor">@drawable/bottom_navigation_item_selector</item>
     </style>
 
-    <style name="itemTextAppearanceActive" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">13sp</item>
-    </style>
-
-    <style name="itemTextAppearanceInactive" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">13sp</item>
+    <style name="BottomNavigation.itemTextAppearance" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/text_size_xsmall</item>
     </style>
 
     <style name="TextView" parent="Widget.AppCompat.TextView">

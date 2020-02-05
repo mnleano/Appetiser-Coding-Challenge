@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.neds.appetisercodingchallenge.R
 import com.neds.appetisercodingchallenge.databinding.RowResultBinding
 import com.neds.appetisercodingchallenge.model.ResultModel
+import timber.log.Timber
 
-class ResultAdapter(private val results: MutableList<ResultModel>) :
+class ResultAdapter(private val results: MutableList<ResultModel>, private val listener: Listener) :
     RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
 
     private var inflater: LayoutInflater? = null
@@ -33,8 +34,15 @@ class ResultAdapter(private val results: MutableList<ResultModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = results[position]
         holder.binding.data = result
+        holder.binding.root.setOnClickListener {
+            Timber.d("onBindViewHolder: onClicked: result.title=${result.title}")
+            listener.onClick(result)
+        }
     }
 
     inner class ViewHolder(val binding: RowResultBinding) : RecyclerView.ViewHolder(binding.root)
 
+    interface Listener{
+        fun onClick(result: ResultModel)
+    }
 }

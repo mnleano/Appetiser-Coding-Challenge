@@ -53,7 +53,7 @@ data class Result(
     @SerializedName("genreIds")
     val genreIds: List<String>,
     @SerializedName("genres")
-    val genres: List<String>,
+    val genres: List<String>?,
     @SerializedName("hasITunesExtras")
     val hasITunesExtras: Boolean,
     @SerializedName("isStreamable")

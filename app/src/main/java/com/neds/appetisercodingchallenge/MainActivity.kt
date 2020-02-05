@@ -9,11 +9,6 @@ import com.neds.appetisercodingchallenge.fragments.CartFragment
 import com.neds.appetisercodingchallenge.fragments.HistoryFragment
 import com.neds.appetisercodingchallenge.fragments.HomeFragment
 import com.neds.appetisercodingchallenge.fragments.WishListFragment
-import com.neds.appetisercodingchallenge.webService.ITunesApi
-import com.neds.appetisercodingchallenge.webService.model.SearchResponse
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class MainActivity : BaseActivity() {
@@ -41,6 +36,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setFragment(fragment: Fragment): Boolean {
+        Timber.d("setFragment: oldFragment=$oldFragment, fragment=$fragment oldFragment != fragment: ${oldFragment != fragment}")
         if (oldFragment != fragment) {
             oldFragment = fragment
             supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
